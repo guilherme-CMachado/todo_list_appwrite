@@ -13,31 +13,56 @@ class LoginPage extends StatelessWidget {
         appBar: AppBar(
           title: Text("Login"),
         ),
-        body: Column(
-          children: [
-            TextFormField(
-              keyboardType: TextInputType.emailAddress,
-              controller: emailController,
-              decoration: const InputDecoration(hintText: "email"),
-            ),
-            TextFormField(
-              obscureText: true,
-              controller: passwordController,
-              decoration: const InputDecoration(hintText: "password"),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    loginUser(passwordController.text, emailController.text, context);
-                  },
-                  child: Text("Login"),
-                ),
-               
-              ],
-            )
-          ],
+        body: Container(
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+          child: Column(
+            children: [
+              Spacer(),
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                controller: emailController,
+                
+                decoration: const InputDecoration(hintText: "email", border: OutlineInputBorder()),
+              ),
+              const SizedBox(height: 40),
+              TextFormField(
+                obscureText: true,
+                controller: passwordController,
+                decoration: const InputDecoration(hintText: "password", border: OutlineInputBorder()),
+              ),
+              Spacer(),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 8),
+                padding: EdgeInsets.all(12),
+                child: TextButton(
+                    style: TextButton.styleFrom(
+                      minimumSize: Size(double.maxFinite, 50),
+                      backgroundColor: Colors.purple,
+                    ),
+                    onPressed: () {
+                      loginUser(passwordController.text, emailController.text, context);
+                    },
+                    child: Text(
+                      "Login",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    )),
+              ),
+              Container(
+                padding: EdgeInsets.all(12),
+                margin: const EdgeInsets.symmetric(horizontal: 8),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    minimumSize: Size(double.maxFinite, 50),
+                    backgroundColor: Colors.purple,
+                  ),
+                  onPressed: (){
+                  Navigator.pushNamed(context, '/signup');
+                }, 
+                child: Text("Sign up", style: TextStyle(color: Colors.white, fontSize: 20),)),
+              ),
+              const SizedBox(height: 40,)
+            ],
+          ),
         ),
       ),
     );
